@@ -1,0 +1,80 @@
+<@import PersonalFinanceTracker@>
+
+pool: <tracker> 1
+
+# Initialize the tracker
+init: <tracker> = PersonalFinanceTracker()
+
+# Operations on the finance tracker
+<action>
+<tracker>.add_income("<source>", <amount>)
+<source> := string
+<amount> := int
+
+<action>
+<tracker>.add_expense("<category>", <amount>)
+<category> := string
+<amount> := int
+
+<action>
+<tracker>.set_budget("<category>", <amount>)
+<category> := string
+<amount> := int
+
+<action>
+<tracker>.add_financial_goal("<goal>", <amount>)
+<goal> := string
+<amount> := int
+
+<action>
+<tracker>.remove_income("<source>")
+<source> := string
+
+<action>
+<tracker>.remove_expense("<category>")
+<category> := string
+
+<action>
+<tracker>.update_income("<source>", <amount>)
+<source> := string
+<amount> := int
+
+<action>
+<tracker>.update_expense("<category>", <amount>)
+<category> := string
+<amount> := int
+
+<action>
+<result> := <tracker>.get_total_income()
+<result> := int
+
+<action>
+<result> := <tracker>.get_total_expense()
+<result> := int
+
+<action>
+<result> := <tracker>.get_balance()
+<result> := int
+
+<action>
+<result> := <tracker>.check_budgets()
+<result> := int
+
+<action>
+<tracker>.add_savings_goal("<goal>", <target_amount>)
+<goal> := string
+<target_amount> := int
+
+<action>
+<tracker>.update_savings_goal("<goal>", <additional_amount>)
+<goal> := string
+<additional_amount> := int
+
+<action>
+<tracker>.remove_savings_goal("<goal>")
+<goal> := string
+
+# Properties
+<property>
+for each <tracker>:
+    <tracker>.get_balance() == sum(i["amount"] for i in <tracker>.incomes) - sum(e["amount"] for e in <tracker>.expenses)
